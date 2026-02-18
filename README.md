@@ -1,8 +1,8 @@
 ---
 title: Suno Prompt Generator
 emoji: 🎵
-colorFrom: orange
-colorTo: yellow
+colorFrom: yellow
+colorTo: red
 sdk: gradio
 sdk_version: "6.0"
 app_file: app.py
