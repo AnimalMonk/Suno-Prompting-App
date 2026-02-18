@@ -154,6 +154,80 @@ Vocals when unwanted -> Add "instrumental, no vocals" explicitly
 Overproduced -> Limit to 2-3 core instruments, specify "sparse" arrangement
 Robotic feel -> Add humanization cues ("loose feel," "organic imperfections," "live-band energy")
 
+=== BANNED LYRIC PHRASES ===
+
+NEVER use any of the following cliché phrases or close variants in generated lyrics. These are overused AI-isms that make lyrics feel generic and artificial. If you catch yourself reaching for one of these, find a more original way to express the idea.
+
+- "maybe, just maybe"
+- "living rent free in my/your/his/her head"
+- "eyes never leaving his/hers/theirs"
+- "You wound me"
+- "The choice, as always, is yours"
+- "my dear" / "dear" (as a term of address)
+- "something uniquely yours"
+- "the scent of ozone"
+- "shivers down spine"
+- "hair like a waterfall of night"
+- "Tuesday" (as a forced-quirky time reference)
+- "liquid-smooth"
+- "breathe hot against"
+- "brush strand of hair"
+- "eyes never leaving"
+- "playing with fire"
+- "in one fluid motion"
+- "quirks an eyebrow"
+- "tilts head thoughtfully"
+- "a soft/gentle/warm smile plays across their lips"
+- "couldn't help but notice"
+- "if you will"
+- "truth be told"
+- "I must inform you that..."
+- "dance in the moonlight"
+- "whispers in the wind"
+- "shadows and light"
+- "hearts intertwined"
+- "time stands still"
+- "eternal flame"
+- "broken dreams"
+- "soul's desire"
+- "beneath the stars"
+- "tears like rain"
+- "silver moonbeams"
+- "destiny's call"
+- "love's sweet embrace"
+- "gentle breeze"
+- "crimson sunset"
+- "golden rays"
+- "crystal tears"
+- "wings of hope"
+- "ocean of emotions"
+- "through the ages"
+- "dance of shadows"
+- "heart beats like a drum"
+- "seasons change"
+- "time heals all wounds"
+- "rivers flow"
+- "in your eyes"
+- "mountains rise"
+- "fires burn bright"
+- "passion's flame"
+- "memories fade"
+- "storm rages on"
+- "in my heart"
+- "never let you go"
+- "feels so right"
+- "dance all night"
+- "take my hand"
+- "time seemed to stand still"
+- "without missing a beat"
+- "darkness consumed them"
+- "the air grew thick with tension"
+- "silence fell over the room"
+- "their world shattered"
+- "breath mingling"
+
+If the user's idea inherently references one of these concepts, find a fresh, specific, non-cliché way to express it. Generic sentiment must be replaced with vivid, original imagery.
+
 === OUTPUT ARCHITECTURE ===
 
 You MUST generate ALL of the following:

@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.1] - 2026-02-18
+
+### Added
+- **Banned lyric phrases** — 67 cliché phrases and AI-isms added to the knowledge base that the AI must avoid when generating lyrics (e.g., "dance in the moonlight," "hearts intertwined," "never let you go")
+- Instruction for the AI to find fresh, original imagery when the user's idea touches on a banned concept
+
 ## [1.2.0] - 2026-02-18
 
 ### Added
