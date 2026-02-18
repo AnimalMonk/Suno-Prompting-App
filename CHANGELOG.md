@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.1] - 2026-02-18
+
+### Fixed
+- Fixed installer crash on launch: `safehttpx/version.txt` was not being bundled by PyInstaller, causing a `FileNotFoundError` on the target machine
+- Added `--collect-data safehttpx` to build script
+
 ## [1.1.0] - 2026-02-18
 
 ### Added

@@ -2,7 +2,7 @@
 
 [Setup]
 AppName=Suno Prompt Generator
-AppVersion=1.1.0
+AppVersion=1.1.1
 AppPublisher=AnimalMonk
 AppPublisherURL=https://github.com/AnimalMonk/Suno-Prompting-App
 DefaultDirName={autopf}\SunoPromptGenerator

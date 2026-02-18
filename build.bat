@@ -75,6 +75,7 @@ venv\Scripts\pyinstaller.exe ^
     --runtime-hook runtime_hook.py ^
     --collect-data gradio ^
     --collect-data gradio_client ^
+    --collect-data safehttpx ^
     --add-data "knowledge_base.py;." ^
     desktop_app.py
 
