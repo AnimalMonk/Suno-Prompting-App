@@ -154,7 +154,7 @@ def create_app():
     """Build and return the Gradio Blocks app and theme."""
     with gr.Blocks(title="Suno Prompt Generator") as demo:
         gr.Markdown(
-            "# Suno Prompt Generator\n"
+            "# Suno Prompt Generator <span style='font-size:0.45em; font-weight:normal; color:#999;'>by AnimalMonk</span>\n"
             "Describe your song idea in natural language. Get back structured Suno prompts.\n\n"
             "You need an [OpenRouter API key](https://openrouter.ai/keys) to use this app. "
             "Your key is sent directly to OpenRouter and is never stored."
