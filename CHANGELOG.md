@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.1] - 2025-02-18
+
+### Changed
+- Added CLAUDE.md to .gitignore to keep project instructions local only
+
 ## [1.0.0] - 2025-02-18
 
 ### Added
