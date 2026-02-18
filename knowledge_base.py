@@ -17,9 +17,9 @@ Tag Weighting: Position 1 = ~50% influence, Position 2 = ~25%, Position 3 = ~12.
 
 Style Prompt: 200-400 chars optimal (sweet spot 250-350). Beyond 400 = dilution and ignored descriptors.
 
-Lyrics Field: Use structure tags on their own lines. Keep section-specific changes, performance cues, and actual lyrics here. Tempo and Key go in STYLE PROMPT ONLY, do NOT repeat in lyrics.
+Lyrics Field: Use structure tags on their own lines. Keep section-specific changes, performance cues, and actual lyrics here. BPM can appear in both style prompt AND lyrics (useful for per-section tempo changes like [BPM: 140] before [Chorus]). Key goes in STYLE PROMPT ONLY, do NOT repeat in lyrics.
 
-BANNED (Suno ignores these): Frequency specs (40Hz, 2kHz), decibel specs (-6dB, -30dB), time-based specs (6-second decay), DAW terms (sidechain compression, transient shaping), stereo positioning (hard-panned L/R), mastering specs (-14 LUFS, -3 dBTP), bit depth (12-bit reduction).
+BANNED (Suno ignores these): Frequency specs (40Hz, 2kHz), decibel specs (-6dB, -30dB), time-based specs (6-second decay), DAW terms (sidechain compression, transient shaping), bit depth (12-bit reduction). Mastering LUFS specs (-14 LUFS, -3 dBTP) are low-sensitivity and unreliable — Suno may approximate but cannot guarantee exact values.
 
 USE INSTEAD: Qualitative descriptors ("deep bass," "punchy kicks," "crisp hats"), texture words ("lo-fi," "tape saturation," "vinyl crackle," "analog," "warm," "bitcrushed"), instrument names ("808 drums," "Rhodes piano," "TR-808"), mood words, physical placement ("close-mic," "room reverb," "distant").
 
@@ -37,6 +37,7 @@ Strings/Orchestral: "strings legato," "strings staccato," "strings pizzicato," "
 Percussion: "hand percussion," "shakers," "cajon," "808 kick," "electronic percussion"
 Compression: "transparent compression," "glue compression," "pumpy compression"
 Tonal Balance: "bright top," "warm low-mids," "clean midrange," "bass-forward," "airy highs"
+Stereo Width: "narrow," "medium," "wide," "extreme-wide" (qualitative width — do NOT use hard-panned L/R positioning)
 
 === PERFORMANCE & HUMANIZATION ===
 
@@ -57,7 +58,7 @@ Arrangement:
 Electronic: House, Techno, Trance, Drum and Bass, Dubstep, Synthwave, Ambient, IDM, Glitch, Electro-Industrial
 Rock: Classic Rock, Hard Rock, Psychedelic Rock, Garage Rock, Post-Rock, Progressive Rock, Grunge, Alternative Rock, Indie Rock, Stoner Rock, Math Rock
 Metal: Heavy, Thrash, Death, Black, Doom, Sludge, Progressive, Symphonic, Nu-Metal, Metalcore, Industrial Metal
-Punk: Classic Punk, Hardcore, Post-Punk, Pop Punk, Garage Punk, Riot Grrrl, Crust, Horror Punk
+Punk: Classic Punk, Hardcore, Post-Punk, Anarcho-Punk, Pop Punk, Garage Punk, Queercore, Riot Grrrl, Crust, Horror Punk
 Hip-Hop/Rap: Boom Bap, Trap, Drill, Lo-Fi Hip Hop, Gangsta Rap, Alternative Hip Hop, Conscious Rap, Cloud Rap
 Pop: Mainstream Pop, Indie Pop, Synthpop, Electropop, Dance Pop, Bedroom Pop
 Jazz: Bebop, Cool Jazz, Free Jazz, Fusion, Swing, Latin Jazz, Avant-garde Jazz
@@ -153,6 +154,78 @@ Too chaotic -> Remove contradictions, pick ONE dominant mood
 Vocals when unwanted -> Add "instrumental, no vocals" explicitly
 Overproduced -> Limit to 2-3 core instruments, specify "sparse" arrangement
 Robotic feel -> Add humanization cues ("loose feel," "organic imperfections," "live-band energy")
+
+=== TAG SCOPE & SENSITIVITY ===
+
+Every Suno tag operates at a specific scope and has a sensitivity level that determines how strongly Suno responds to it.
+
+Scope levels:
+- Global: Affects the entire track. Place at top of style prompt or lyrics header.
+- Section: Affects one section. Place immediately before the section tag.
+- Line/Phrase: Affects a single lyric line or phrase. Place inline.
+
+Sensitivity ratings (how reliably Suno honors the tag):
+- HIGH: Genre, BPM, Key, Instruments, Vocal Register, Vocal Delivery, Groove Feel, Drum Style, Performance Energy, Language
+- MEDIUM: Harmony Style, Time Signature, Arrangement Density, Vocal Effects, Vocal Articulation, Reverb, Delay, Compression, EQ/Tonal Balance, Stereo Width, Emotional Arc, Intensity Arc, Mood, LyricTone, Chords, Persona, Bar Counts, Layering
+- LOW: Mastering/Loudness targets, Metadata tags, Licensing flags
+
+Tags with HIGH sensitivity should be prioritized in the style prompt. Tags with LOW sensitivity may be approximated or ignored.
+
+=== TAG CONFLICT RESOLUTION ===
+
+When tags conflict, Suno resolves them using these rules:
+
+Genre: If conflicting genres present, the last high-priority genre wins. Fallback is default "Pop" semantics.
+BPM: If multiple BPM tags exist, the one closest to the section (most local) overrides global. Uploaded audio tempo always takes precedence over BPM tags.
+Key: Section-local key overrides global key. Explicit chord progressions override Key if incompatible.
+Chords: Explicit [Chords: ...] overrides Key tag. If chords are invalid, Suno infers from Key/genre.
+Performance cues: If contradictory cues present, the last cue nearest to the phrase wins.
+Persona/Voice: If an unavailable Persona is requested, Suno substitutes the nearest-match voice.
+Time signature: If incompatible with BPM or chords, Suno defaults to idiomatic 4/4.
+Mood: If conflicting mood tags present, the last one parsed wins.
+Arrangement density: Global "dense" may conflict with intimate requests (e.g., close-mic vocal). Be intentional.
+
+=== TAG PITFALLS ===
+
+Common mistakes that reduce output quality:
+
+- Stacking contradictory moods (e.g., "playful" + "melancholic") reduces coherence — pick ONE dominant mood
+- Listing more than 6 instruments dilutes focus — keep to 3-6 core instruments
+- Microtiming humanization values >50ms make the performance feel off-grid
+- Zero or very high velocity variance removes intended dynamics or creates erratic output
+- Heavy vocal processing can override subtle humanization cues
+- "Energy: high" with "Tempo: slow" creates conflicting signals
+- Very niche subgenres may be approximated to nearest mainstream subgenre
+- Extreme stereo width can cause phase issues in mono playback
+- "Production: lo-fi" + "Production: polished" are contradictory
+- Too many emotional arc transitions reduce clarity — keep to 2-3 stages
+- Rare time signatures (5/4, 7/8) may be approximated; test with explicit rhythmic examples
+- Abstract adjectives like "emotional" are less actionable than "conversational" or "poetic"
+- Avoid direct imitation of living regional artists; use descriptive cues instead
+
+=== SECTION-LEVEL OVERRIDES ===
+
+BPM and Key can be set per-section, not just globally. Section-level tags override the global value for that section only.
+
+Examples:
+  [BPM: 100]           (global default)
+  [Verse]
+  ...
+  [BPM: 140]           (override for chorus only)
+  [Chorus]
+  ...
+
+This is useful for songs that speed up, slow down, or shift key at the bridge. Section-local tags always take priority over global ones.
+
+=== SPECULATIVE TAGS ===
+
+These tags have partial or unverified support. Use with appropriate expectations — they may be approximated or ignored.
+
+[KeyChange: to X at section] — Requests modulation (e.g., [KeyChange: D major at bridge]). LOW confidence. If unsupported, Suno keeps original key.
+[FX: reverb=large, delay=200ms] — Mix-level effects via key=value pairs. LOW confidence. Reverb and delay keywords are partially recognized.
+[Repeat: n] / [Vamps: n] — Request section repetition. LOW confidence. Studio-level loop controls are more reliable.
+[ReferenceAudio: file_id] — Use uploaded audio as seed for style/voice. MEDIUM confidence for file usage; tag-in-lyrics is speculative. Use Studio UI for deterministic results.
+[Extend] / [Loop: times] / [Replace] — Studio operation tags. MEDIUM confidence. Better used via Studio UI controls than in-lyrics tags.
 
 === BANNED LYRIC PHRASES ===
 

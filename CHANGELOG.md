@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.3.0] - 2026-02-18
+
+### Added
+- **Tag Scope & Sensitivity** section — documents which tags are HIGH/MEDIUM/LOW sensitivity and global vs. section vs. line scope
+- **Tag Conflict Resolution** section — how Suno resolves conflicting tags (e.g., chords override key, section BPM overrides global)
+- **Tag Pitfalls** section — 13 common mistakes that reduce output quality
+- **Section-Level Overrides** section — per-section BPM and Key changes with examples
+- **Speculative Tags** section — partially supported tags (KeyChange, FX, Repeat, ReferenceAudio, Extend) with confidence levels
+- Stereo Width added to working production terms: narrow, medium, wide, extreme-wide
+- Missing Punk subgenres added: Anarcho-Punk, Queercore
+
+### Changed
+- **BPM now allowed in lyrics field** — enables per-section tempo changes (previously restricted to style prompt only)
+- **Stereo unbanned** — qualitative stereo width descriptors (narrow/wide) are valid; only hard-panned L/R positioning remains unsupported
+- **Mastering LUFS reclassified** — changed from outright banned to "low-sensitivity and unreliable" (Suno may approximate but can't guarantee exact values)
+
 ## [1.2.1] - 2026-02-18
 
 ### Added
