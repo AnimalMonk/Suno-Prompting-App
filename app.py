@@ -272,4 +272,7 @@ demo, _theme = create_app()
 
 if __name__ == "__main__":
     load_dotenv()  # Load .env for local dev
-    demo.launch(inbrowser=True, theme=_theme)
+    demo.launch(server_name="0.0.0.0", server_port=7860, inbrowser=True, theme=_theme)
+else:
+    # HF Spaces: launch explicitly so Gradio binds to the expected port
+    demo.launch(server_name="0.0.0.0", server_port=7860, theme=_theme)
