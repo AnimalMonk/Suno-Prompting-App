@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2] - 2026-02-18
+
+### Fixed
+- Fixed second installer crash: `groovy/version.txt` also missing from PyInstaller bundle
+- Added `--collect-data groovy` to build script
+- Audited all dependencies for missing data files to prevent further issues
+
 ## [1.1.1] - 2026-02-18
 
 ### Fixed

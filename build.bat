@@ -76,6 +76,7 @@ venv\Scripts\pyinstaller.exe ^
     --collect-data gradio ^
     --collect-data gradio_client ^
     --collect-data safehttpx ^
+    --collect-data groovy ^
     --add-data "knowledge_base.py;." ^
     desktop_app.py
 
