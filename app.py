@@ -155,7 +155,7 @@ def create_app():
     with gr.Blocks(title="Suno Prompt Generator") as demo:
         gr.Markdown(
             "# Suno Prompt Generator <span style='font-size:0.45em; font-weight:normal; color:#999;'>by AnimalMonk</span>\n"
-            "Describe your song idea in natural language. Get back structured Suno prompts.\n\n"
+            "This is meant to spark new ideas or get you a starting point. Take what it gives you and make it goldensome!\n\n"
             "You need an [OpenRouter API key](https://openrouter.ai/keys) to use this app. "
             "Your key is sent directly to OpenRouter and is never stored."
         )
@@ -183,7 +183,7 @@ def create_app():
             )
 
         song_input = gr.Textbox(
-            label="Song Idea",
+            label="Song Idea: describe your song idea in natural language. Get back structured Suno prompts.",
             placeholder="A melancholy song about driving alone at night on empty highways, with a female vocal that sounds tired but hopeful...",
             lines=4,
         )
