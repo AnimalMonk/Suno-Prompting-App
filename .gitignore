@@ -3,3 +3,13 @@ __pycache__/
 *.pyc
 .env
 CLAUDE.md
+
+# Build artifacts
+build/
+dist/
+Output/
+*.spec
+
+# Source reference documents (local only)
+*.pdf
+Suno Database.txt

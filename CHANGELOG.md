@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.1.0] - 2026-02-18
+
+### Added
+- **Windows installer packaging** via PyInstaller + Inno Setup
+  - `desktop_app.py` — Packaged entry point that launches Gradio in default browser with no console window
+  - `build.bat` — One-click build script that runs PyInstaller and optionally Inno Setup
+  - `installer.iss` — Inno Setup script with custom API key prompt during installation
+  - `hooks/hook-gradio.py` — PyInstaller hook for Gradio source collection
+  - `runtime_hook.py` — Multiprocessing freeze support for PyInstaller
+- Installer features:
+  - Professional setup wizard with custom API key input page
+  - Start Menu and optional desktop shortcuts
+  - Add/Remove Programs entry
+  - Writes `.env` file with API key to install directory
+  - Option to launch app after installation
+- Build produces both a portable exe (`dist/SunoPromptGenerator/`) and an installer (`Output/SunoPromptGenerator_Setup.exe`)
+
+### Changed
+- Refactored `app.py` to expose `create_app()` function, allowing reuse by both dev mode and desktop packaging
+- Updated `.gitignore` to exclude build artifacts (`build/`, `dist/`, `Output/`, `*.spec`) and source reference documents
+- Removed `pywebview` from requirements (pythonnet incompatible with Python 3.14; using browser-based approach instead)
+
 ## [1.0.1] - 2025-02-18
 
 ### Changed
