@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0] - 2026-02-18
+
+### Added
+- **Hugging Face Spaces support** — app can now be deployed as a public web app
+- API key input field in the UI (users bring their own OpenRouter key)
+- `README.md` with HF Spaces YAML frontmatter and project documentation
+- Privacy note: API keys are sent directly to OpenRouter and never stored
+
+### Changed
+- `generate_prompt()` now accepts `api_key` parameter from the UI instead of only reading from env
+- `_get_client()` prioritizes UI-provided key, falls back to `.env` for local/desktop use
+- Gradio `demo` object created at module level for HF Spaces auto-detection
+- API Key section uses collapsible `gr.Accordion` and password-masked input
+
 ## [1.1.2] - 2026-02-18
 
 ### Fixed

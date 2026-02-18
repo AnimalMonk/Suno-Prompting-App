@@ -60,15 +60,18 @@ THEME = gr.themes.Base(
 # CORE LOGIC
 # ─────────────────────────────────────────────
 
-def _get_client():
-    """Create OpenAI client using current env var."""
+def _get_client(api_key: str = ""):
+    """Create OpenAI client. Uses provided key, falls back to env var."""
+    key = api_key.strip() or os.getenv("OPENROUTER_API_KEY", "")
+    if not key:
+        raise ValueError("No API key provided. Enter your OpenRouter API key above.")
     return OpenAI(
         base_url="https://openrouter.ai/api/v1",
-        api_key=os.getenv("OPENROUTER_API_KEY", ""),
+        api_key=key,
     )
 
 
-def generate_prompt(song_idea: str, model_choice: str, custom_model: str, weirdness: int):
+def generate_prompt(api_key: str, song_idea: str, model_choice: str, custom_model: str, weirdness: int):
     """Call OpenRouter and parse the structured response."""
     if not song_idea.strip():
         return "", "Please enter a song idea.", "", "", ""
@@ -82,7 +85,11 @@ def generate_prompt(song_idea: str, model_choice: str, custom_model: str, weirdn
         model_id = MODELS.get(model_choice, "google/gemini-3-flash-preview")
 
     system_prompt = build_system_prompt(weirdness)
-    client = _get_client()
+
+    try:
+        client = _get_client(api_key)
+    except ValueError as e:
+        return "", str(e), "", "", ""
 
     try:
         response = client.chat.completions.create(
@@ -146,7 +153,20 @@ def toggle_custom_visibility(choice):
 def create_app():
     """Build and return the Gradio Blocks app and theme."""
     with gr.Blocks(title="Suno Prompt Generator") as demo:
-        gr.Markdown("# Suno Prompt Generator\nDescribe your song idea in natural language. Get back structured Suno prompts.")
+        gr.Markdown(
+            "# Suno Prompt Generator\n"
+            "Describe your song idea in natural language. Get back structured Suno prompts.\n\n"
+            "You need an [OpenRouter API key](https://openrouter.ai/keys) to use this app. "
+            "Your key is sent directly to OpenRouter and is never stored."
+        )
+
+        with gr.Accordion("API Key", open=True):
+            api_key_input = gr.Textbox(
+                label="OpenRouter API Key",
+                placeholder="sk-or-v1-...",
+                type="password",
+                lines=1,
+            )
 
         with gr.Row():
             model_dropdown = gr.Dropdown(
@@ -226,16 +246,17 @@ def create_app():
         )
 
         outputs = [title_output, style_output, lyrics_output, settings_output, cover_art_output]
+        inputs = [api_key_input, song_input, model_dropdown, custom_model_input, weirdness_slider]
 
         generate_btn.click(
             fn=generate_prompt,
-            inputs=[song_input, model_dropdown, custom_model_input, weirdness_slider],
+            inputs=inputs,
             outputs=outputs,
         )
 
         song_input.submit(
             fn=generate_prompt,
-            inputs=[song_input, model_dropdown, custom_model_input, weirdness_slider],
+            inputs=inputs,
             outputs=outputs,
         )
 
@@ -243,10 +264,12 @@ def create_app():
 
 
 # ─────────────────────────────────────────────
-# DEV MODE ENTRY POINT
+# ENTRY POINT
 # ─────────────────────────────────────────────
 
+# Build the app at module level so HF Spaces can detect it
+demo, _theme = create_app()
+
 if __name__ == "__main__":
-    load_dotenv()
-    demo, theme = create_app()
-    demo.launch(inbrowser=True, theme=theme)
+    load_dotenv()  # Load .env for local dev
+    demo.launch(inbrowser=True, theme=_theme)
