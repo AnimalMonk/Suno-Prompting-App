@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1] - 2026-02-20
+
+### Fixed
+- **Performance cues changed from parentheses to brackets** — `(whispered)`, `(belted)`, etc. are now `[whispered]`, `[belted]`, etc. Suno was occasionally singing parenthesized cues as literal lyrics instead of treating them as directives.
+- **Parentheses now reserved for backing vocals only** — `( )` wrapped text like `(ooh, ooh)` is treated by Suno as a background vocal layer. They should never be used for instructions or performance cues.
+- **Added explicit bracket rule** — All instructions, cues, and directives in the lyrics field must be in `[ ]` brackets. Anything not bracketed is treated as singable lyrics by Suno. Rule added to both the Structure Tags section and the Output Architecture section.
+
 ## [1.3.0] - 2026-02-18
 
 ### Added

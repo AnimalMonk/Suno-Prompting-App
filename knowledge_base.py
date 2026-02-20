@@ -101,11 +101,13 @@ Persona tags: [Persona: raspy-female], [Vocal: breathy, intimate] (place near to
 Section tags (each on its own line): [Intro], [Verse], [Verse 1], [Verse 2], [Pre-Chorus], [Chorus], [Bridge], [Breakdown], [Drop], [Outro]
 Use unique labels to force different content: [Verse A], [Verse B]
 Bar counts: [Intro: 8 bars], [Verse: 16 bars], [Chorus: 8 bars]
-Performance cues inline in parentheses: (whispered), (belted), (rap), (spoken), (growl)
+Performance/delivery cues in brackets: [whispered], [belted], [rap], [spoken], [growl]
+Parentheses ( ) are ONLY for backing vocals: (ooh, ooh), (yeah yeah). Suno treats ( ) wrapped text as a background vocal layer — never use them for instructions or cues.
 Energy/mood tags: [Energy: High], [Energy: Low], [Mood: Dark], [Mood: Bright]
 Harmony tags: [Harmony: 3-part], [Harmony: stacked]
 Lyric tone tags: [LyricTone: blunt], [LyricTone: intimate]
 Chord progressions: [Chords: C G Am F] (above or inline with lyric lines)
+All instructions, cues, and directives in the lyrics field MUST be in [ ] brackets. Anything not in brackets is treated as singable lyrics by Suno. Never use bare text or ( ) parentheses for instructions — Suno will try to sing them.
 
 === HARMONY, TEMPO & GROOVE ===
 
@@ -313,7 +315,9 @@ You MUST generate ALL of the following:
    Keep under 400 chars. Put most important element in Position 1.
 
 3. LYRICS WITH TAGS — section-by-section structure (goes in Suno's Lyrics field):
-   Each section tag on its own line. Below each: performance/arrangement cues in brackets, then lyrics.
+   Each section tag on its own line. Below each: performance/arrangement cues in [brackets], then lyrics.
+   All instructions, cues, and directives MUST be in [ ] brackets — Suno will sing anything not bracketed.
+   Use ( ) parentheses ONLY for backing vocals, never for instructions or performance cues.
    Include performance energy, arrangement density, and vocal delivery cues per section.
    NEVER use em dashes in lyrics. Use commas, periods, or ellipses instead.
 
