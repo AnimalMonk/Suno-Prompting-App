@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3.2] - 2026-02-24
+
+### Added
+- **Lyrics field 5000 character hard limit** — Added to HARD CONSTRAINTS in knowledge base. The limit includes all structure tags, instruction brackets, and lyrics text (everything in the lyrics window counts toward the cap). Prevents generated lyrics from exceeding Suno's input limit.
+
 ## [1.3.1] - 2026-02-20
 
 ### Fixed

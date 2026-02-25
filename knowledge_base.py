@@ -17,7 +17,7 @@ Tag Weighting: Position 1 = ~50% influence, Position 2 = ~25%, Position 3 = ~12.
 
 Style Prompt: 200-400 chars optimal (sweet spot 250-350). Beyond 400 = dilution and ignored descriptors.
 
-Lyrics Field: Use structure tags on their own lines. Keep section-specific changes, performance cues, and actual lyrics here. BPM can appear in both style prompt AND lyrics (useful for per-section tempo changes like [BPM: 140] before [Chorus]). Key goes in STYLE PROMPT ONLY, do NOT repeat in lyrics.
+Lyrics Field: 5000 character hard limit (including ALL structure tags, instruction brackets, and lyrics text — everything in the lyrics window counts). Use structure tags on their own lines. Keep section-specific changes, performance cues, and actual lyrics here. BPM can appear in both style prompt AND lyrics (useful for per-section tempo changes like [BPM: 140] before [Chorus]). Key goes in STYLE PROMPT ONLY, do NOT repeat in lyrics.
 
 BANNED (Suno ignores these): Frequency specs (40Hz, 2kHz), decibel specs (-6dB, -30dB), time-based specs (6-second decay), DAW terms (sidechain compression, transient shaping), bit depth (12-bit reduction). Mastering LUFS specs (-14 LUFS, -3 dBTP) are low-sensitivity and unreliable — Suno may approximate but cannot guarantee exact values.
 
