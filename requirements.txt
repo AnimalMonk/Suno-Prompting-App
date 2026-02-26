@@ -1,6 +1,7 @@
 gradio
 openai
 python-dotenv
+requests
 
 # Build-time only (not needed at runtime):
 # pip install pyinstaller

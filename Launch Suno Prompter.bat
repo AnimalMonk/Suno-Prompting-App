@@ -1,4 +1,3 @@
 @echo off
 cd /d "%~dp0"
-venv\Scripts\python.exe app.py
-pause
+start "Suno Prompt Generator" /min venv\Scripts\python.exe app.py

@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.0] - 2026-02-25
+
+### Added
+- **ElectronHub API support** — The app now works with both OpenRouter and ElectronHub API keys. Provider is auto-detected from the key prefix (`sk-or-` routes to OpenRouter, `ek-` routes to ElectronHub). No manual selection needed.
+- **Free Mode** — New "Free Mode" checkbox lets users generate prompts without any API key. Uses a hardcoded ElectronHub key with free models (glm-4.5-air, qwen3-coder, llama-4-maverick, claude-3-haiku, kimi-k2.5, gemini-2.5-flash). Randomly selects a model and cascades through the rest on failure. Grays out the API key and model dropdown when active.
+- **SDXL cover art image generation** — The cover art section is now split into two columns: the left column generates an actual image using SDXL via ElectronHub's image generation endpoint, and the right column shows the text prompt (with copy button). Image generation is free for everyone using the hardcoded ElectronHub key. If image generation fails, text outputs still appear normally.
+- **`requests` dependency** added to requirements.txt for image generation API calls.
+
+### Changed
+- **API Key field** — Label updated to "API Key (OpenRouter or ElectronHub)" with placeholder showing both key formats.
+- **Intro text** — Now mentions both providers and Free Mode availability.
+
 ## [1.3.2] - 2026-02-24
 
 ### Added
