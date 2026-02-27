@@ -15,6 +15,8 @@ import requests
 from dotenv import load_dotenv
 from openai import OpenAI
 
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env"))
+
 from knowledge_base import build_system_prompt
 
 # ─────────────────────────────────────────────
@@ -281,6 +283,7 @@ def generate_prompt(
                     ],
                     temperature=0.9,
                     max_tokens=4096,
+                    timeout=90.0,
                 )
                 raw = response.choices[0].message.content.strip()
                 print(f"Free Mode: {model_id} succeeded")
@@ -301,6 +304,7 @@ def generate_prompt(
                 ],
                 temperature=0.9,
                 max_tokens=4096,
+                timeout=90.0,
             )
             raw = response.choices[0].message.content.strip()
         except Exception as e:
@@ -505,8 +509,6 @@ if __name__ == "__main__":
     import time
     import threading
     import webbrowser
-
-    load_dotenv()  # Load .env for local dev
 
     _server_url = "http://127.0.0.1:7860"
     _shutdown = threading.Event()
