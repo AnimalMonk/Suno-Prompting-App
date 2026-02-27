@@ -364,8 +364,12 @@ def toggle_free_mode(free_mode: bool):
 def create_app():
     """Build and return the Gradio Blocks app and theme."""
     with gr.Blocks(title="Suno Prompt Generator") as demo:
+        gr.HTML(
+            "<h1 style='margin-bottom:0;'>Suno Prompt Generator "
+            "<span style='font-size:0.45em; font-weight:normal; color:#999;'>"
+            "by AnimalMonk &nbsp; Discord.gg/StudioAI</span></h1>"
+        )
         gr.Markdown(
-            "# Suno Prompt Generator <span style='font-size:0.45em; font-weight:normal; color:#999;'>by AnimalMonk</span>\n"
             "This is meant to spark new ideas or get you a starting point. Take what it gives you and make it goldensome!\n\n"
             "Works with [OpenRouter](https://openrouter.ai/keys) and "
             "[ElectronHub](https://api.electronhub.ai) API keys. "
